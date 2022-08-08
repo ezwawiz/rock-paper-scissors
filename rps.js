@@ -1,32 +1,40 @@
-function getComputerChoice(gestures) {
+function getComputerChoice() {
+    let gestures = ["rock", "paper", "scissors"];
     let randomChoice = gestures[Math.floor(Math.random()*gestures.length)];
     return randomChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (computerSelection == "rock") {
+    if (playerSelection === computerSelection) {
         console.log("TIE!")
-    } else if (computerSelection == "paper") {
-        console.log("You LOSE. Paper beats rock!");
-    } else if (computerSelection == "scissors") {
-        console.log("YOU WIN! Rock beats paper.")
-    }
+    } else if (playerSelection == "rock" && computerSelection == "scissors") {
+        console.log("YOU WIN! Rock beats scissors!");
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        console.log("YOU WIN! Paper beats rock!");
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        console.log("YOU WIN! Scissors beats paper.");
+    } else {
+        console.log("You LOSE: " + playerSelection + " loses to " + computerSelection + ".");
+    } 
 }
 
 function game() {
     for (let i=0; i<5;i++) {
+        let playerSelection = prompt("What do you choose?");
+        let computerSelection = getComputerChoice();
         playRound(playerSelection, computerSelection);
     }
     return
 }
 
-let gestures = ["rock", "paper", "scissors"];
+const computerSelection = getComputerChoice();
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice(gestures);
+game();
 
-game(playRound(playerSelection, computerSelection));
+// console.log(playRound(playerSelection, computerSelection));
+
+// game(playRound(playerSelection, computerSelection));
 
 
 
-console.log(getComputerChoice(gestures));
+// console.log(getComputerChoice(gestures));
