@@ -22,12 +22,10 @@ function game() {
     for (let i=0; i<5;i++) {
         let playerSelection = prompt("What do you choose?");
         let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
+        playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
     }
     return
 }
-
-const computerSelection = getComputerChoice();
 
 game();
 
