@@ -5,8 +5,6 @@ const container = document.querySelector('#container');
 const options = document.querySelector('buttons');
 const score = document.querySelector('h1');
 score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
-// container.insertBefore(score, options);
-
 
 function getComputerChoice() {
     const gestures = ["rock", "paper", "scissors"];
@@ -29,16 +27,27 @@ function playRound(playerSelection, computerSelection) {
     } else {
         console.log("You LOSE: " + playerSelection + " loses to " + computerSelection + ".");
         computerScore += 1;
-        container.appendChild(score)
     } 
 
     console.log(playerScore);
     console.log(computerScore);
+}
 
-    // if ((playerScore == 5) || (computerScore == 5)) {
-    //     playerScore = 0;
-    //     computerScore = 0;
-    // } 
+function gameScore() {
+  if (playerScore < 5 || computerScore < 5) {
+    score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`;
+  } else if (playerScore === 5) {
+    resetGame();
+    score.textContent = "YOU WIN! Play again.";
+  } else if (computerScore === 5) {
+    resetGame();
+    score.textContent = "You LOSE! Play again.";
+  }
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
 }
 
 
@@ -52,17 +61,8 @@ window.addEventListener('keydown', function(e) {
         playRound("scissors", getComputerChoice()); 
     }
 
-    if ((playerScore < 5) || (computerScore < 5)) {
-        score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
-    } else if (playerScore == 5) {
-        score.textContent = 'YOU WIN! Play again.'
-        playerScore = 0;
-        computerScore = 0;
-    } else if (computerScore == 5) {
-        score.textContent = 'You LOSE! Play again.'
-        playerScore = 0;
-        computerScore = 0;
-    }
+    gameScore()
+
 });
 
 const buttons = document.querySelectorAll('button');
@@ -76,20 +76,7 @@ buttons.forEach((button) => {
              playRound("scissors", getComputerChoice()); 
          }
 
-         if ((playerScore < 5) || (computerScore < 5)) {
-            score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
-        } else if (playerScore == 5) {
-            score.textContent = 'YOU WIN! Play again.'
-            playerScore = 0;
-            computerScore = 0;
-        } else if (computerScore == 5) {
-            score.textContent = 'You LOSE! Play again.'
-            playerScore = 0;
-            computerScore = 0;
-        }
-
-
-         
+        gameScore()  
     })
 });
 
