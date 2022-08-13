@@ -34,12 +34,12 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function gameScore() {
-  if (playerScore < 5 || computerScore < 5) {
+  if ((playerScore < 5) || (computerScore < 5)) {
     score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`;
-  } else if (playerScore === 5) {
+  } else if (playerScore > 5) {
     resetGame();
     score.textContent = "YOU WIN! Play again.";
-  } else if (computerScore === 5) {
+  } else if (computerScore > 5) {
     resetGame();
     score.textContent = "You LOSE! Play again.";
   }
@@ -49,8 +49,6 @@ function resetGame() {
     playerScore = 0;
     computerScore = 0;
 }
-
-
 
 window.addEventListener('keydown', function(e) {
     if (e.keyCode == 65) {
@@ -62,7 +60,6 @@ window.addEventListener('keydown', function(e) {
     }
 
     gameScore()
-
 });
 
 const buttons = document.querySelectorAll('button');
