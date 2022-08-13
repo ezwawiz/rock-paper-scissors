@@ -1,6 +1,13 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const container = document.querySelector('#container');
+const options = document.querySelector('buttons');
+const score = document.querySelector('h1');
+score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
+// container.insertBefore(score, options);
+
+
 function getComputerChoice() {
     const gestures = ["rock", "paper", "scissors"];
     let randomChoice = gestures[Math.floor(Math.random()*gestures.length)];
@@ -22,23 +29,17 @@ function playRound(playerSelection, computerSelection) {
     } else {
         console.log("You LOSE: " + playerSelection + " loses to " + computerSelection + ".");
         computerScore += 1;
+        container.appendChild(score)
     } 
 
     console.log(playerScore);
     console.log(computerScore);
 
-    if ((playerScore == 5) || (computerScore == 5)) {
-        playerScore = 0;
-        computerScore = 0;
-    } 
+    // if ((playerScore == 5) || (computerScore == 5)) {
+    //     playerScore = 0;
+    //     computerScore = 0;
+    // } 
 }
-
-// function game() {
-//     let playerSelection = prompt("What do you choose?");
-//     let computerSelection = getComputerChoice();
-
-//     playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
-// }
 
 
 
@@ -49,6 +50,18 @@ window.addEventListener('keydown', function(e) {
         playRound("paper", getComputerChoice()); 
     } else if (e.keyCode == 68) {
         playRound("scissors", getComputerChoice()); 
+    }
+
+    if ((playerScore < 5) || (computerScore < 5)) {
+        score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
+    } else if (playerScore == 5) {
+        score.textContent = 'YOU WIN! Play again.'
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore == 5) {
+        score.textContent = 'You LOSE! Play again.'
+        playerScore = 0;
+        computerScore = 0;
     }
 });
 
@@ -62,6 +75,21 @@ buttons.forEach((button) => {
          } else if (button.id == 3) {
              playRound("scissors", getComputerChoice()); 
          }
+
+         if ((playerScore < 5) || (computerScore < 5)) {
+            score.textContent = `Player: ${playerScore} - Computer: ${computerScore}`
+        } else if (playerScore == 5) {
+            score.textContent = 'YOU WIN! Play again.'
+            playerScore = 0;
+            computerScore = 0;
+        } else if (computerScore == 5) {
+            score.textContent = 'You LOSE! Play again.'
+            playerScore = 0;
+            computerScore = 0;
+        }
+
+
+         
     })
 });
 

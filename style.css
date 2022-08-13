@@ -1,4 +1,12 @@
-.buttons {
+.container {
+    display: flex;
+}
+
+h1 {
+    text-align: center;
+}
+
+.options {
     display: flex;    
     justify-content: center;
     align-items: center;
@@ -13,6 +21,8 @@ button {
 }
 
 kbd {
+    font-family: monospace;
     font-size: 32px;
     font-weight: bold;
 }
+
