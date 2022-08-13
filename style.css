@@ -1,0 +1,18 @@
+.buttons {
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+button {
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+kbd {
+    font-size: 32px;
+    font-weight: bold;
+}
